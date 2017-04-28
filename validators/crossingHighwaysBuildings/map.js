@@ -1,5 +1,5 @@
 'use strict';
-var turf = require('turf');
+var turf = require('@turf/turf');
 var _ = require('underscore');
 var rbush = require('rbush');
 
@@ -50,7 +50,7 @@ module.exports = function(tileLayers, tile, writeData, done) {
   for (var i = 0; i < layer.features.length; i++) {
     var val = layer.features[i];
     if (preserveGeometry[val.geometry.type]) {
-      if (val.geometry.type === 'Polygon') {
+      if (val.geometry.type === 'Polygon' && val.geometry.coordinates.length >= 5) {
         val.geometry.type = 'LineString';
         val.geometry.coordinates = val.geometry.coordinates[0];
       }
@@ -79,13 +79,11 @@ module.exports = function(tileLayers, tile, writeData, done) {
         var overlapObj = listOfObjects[overlapBbox[4]];
         if (overlapObj.properties.building) {
           var intersectPoint = turf.intersect(overlapObj, objToEvaluate);
-          if (intersectPoint && ((intersectPoint.geometry.type === 'Point' && listOfAvoidPoints[intersectPoint.geometry.coordinates.join(',')]) || intersectPoint.geometry.type === 'MultiPoint')) {
+          if (intersectPoint && ((intersectPoint.geometry.type === 'Point' &&
+                listOfAvoidPoints[intersectPoint.geometry.coordinates.join(',')]) ||
+              intersectPoint.geometry.type === 'MultiPoint')) {
             objToEvaluate.properties._osmlint = osmlint;
             overlapObj.properties._osmlint = osmlint;
-            if (overlapObj.geometry.type === 'LineString') {
-              overlapObj.geometry.type = 'Polygon';
-              overlapObj.geometry.coordinates = [overlapObj.geometry.coordinates];
-            }
             intersectPoint.properties = {
               _fromWay: objToEvaluate.properties['@id'],
               _toWay: overlapObj.properties['@id'],
