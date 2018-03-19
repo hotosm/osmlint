@@ -1,7 +1,12 @@
 'use strict';
 var tileReduce = require('@mapbox/tile-reduce');
 var path = require('path');
-var meta = ;
+var meta = {
+  'buildingYes': 0,
+  'buildingResidential': 0,
+  'buildingResidentialIncomplete': 0,
+  'totalBuildings': 0
+};
 
 module.exports = function(opts, mbtilesPath, callback) {
   tileReduce({
