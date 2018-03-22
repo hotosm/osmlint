@@ -47,5 +47,6 @@ module.exports = {
   'deprecatedConstructionProposalTag': require('./validators/deprecatedConstructionProposalTag'),
   'punctuationCharactersHighways': require('./validators/punctuationCharactersHighways'),
   'noName': require('./validators/noName'),
-  'incompleteResidentialBuildings': require('./validators/incompleteResidentialBuildings')
+  'incompleteResidentialBuildings': require('./validators/incompleteResidentialBuildings'),
+  'filterResidentialBuildings': require('./validators/filterResidentialBuildings')
 };
