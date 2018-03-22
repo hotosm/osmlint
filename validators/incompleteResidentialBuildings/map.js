@@ -22,7 +22,7 @@ module.exports = function(tileLayers, tile, writeData, done) {
 
       if (val.properties['building'] === 'residential') {
         meta.buildingResidential = meta.buildingResidential + 1;
-        if (!val.properties.hasOwnProperty('roof') || !val.properties.hasOwnProperty('wall') ) {
+        if (!(val.properties.hasOwnProperty('roof')  || val.properties.hasOwnProperty('building:roof')) || !(val.properties.hasOwnProperty('wall') || val.properties.hasOwnProperty('building:wall') || val.properties.hasOwnProperty('building:walls'))) {
           meta.buildingResidentialIncomplete = meta.buildingResidentialIncomplete + 1;
           val.properties._osmlint = osmlint;
           result.push(val);
