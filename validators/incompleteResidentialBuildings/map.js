@@ -10,7 +10,7 @@ module.exports = function(tileLayers, tile, writeData, done) {
     'buildingResidentialIncomplete': 0,
     'totalBuildings': 0
   };
-  
+
   var result = [];
   for (var i = 0; i < layer.features.length; i++) {
     var val = layer.features[i];
