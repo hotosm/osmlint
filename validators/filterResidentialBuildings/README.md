@@ -1,6 +1,20 @@
 #### Description
 
-Filter buildings with tag `building=residential`. Returns a line delimeted feature collection to stdout.
+Filter buildings with tag `building=residential`. Returns a line delimeted feature collection to stdout. The linter will return a JSON bin for edit recency statistics with the following format:
+
+```
+{
+  'YYYYM': number of buildings,
+  '20138': 75,
+  '20139': 416,
+  '20140': 363,
+  '20142': 159,
+  '20143': 132,
+  '20144': 1,
+  '20145': 20,
+  '20147': 19
+}
+```
 
 #### Usage
 
