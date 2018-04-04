@@ -17,7 +17,7 @@ module.exports = function(tileLayers, tile, writeData, done) {
       // populate timeBucket( for edit recency analysis
       var timestamp = moment(val.properties['@timestamp'] * 1000);
       var year = timestamp.year();
-      var month = timestamp.month();
+      var month = timestamp.format('MM');
       var key = String(year) + String(month);
       if (!timeBuckets.hasOwnProperty(key)) {
         timeBuckets[key] = 1;
