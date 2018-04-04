@@ -29,6 +29,6 @@ module.exports = function(opts, mbtilesPath, callback) {
       }, timeBins);
     })
     .on('end', function() {
-      callback && callback(timeBins);
+      callback && callback(null, timeBins);
     });
 };
