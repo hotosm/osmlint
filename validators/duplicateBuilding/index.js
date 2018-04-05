@@ -1,6 +1,7 @@
 'use strict';
 var tileReduce = require('@mapbox/tile-reduce');
 var path = require('path');
+var duplicateCount = 0;
 
 module.exports = function(opts, mbtilesPath, callback) {
   tileReduce({
@@ -15,8 +16,10 @@ module.exports = function(opts, mbtilesPath, callback) {
       }
     ]
   })
-    .on('reduce', function() {})
+    .on('reduce', function(count) {
+      duplicateCount = duplicateCount + count;
+    })
     .on('end', function() {
-      callback && callback();
+      callback && callback(null, duplicateCount);
     });
 };
