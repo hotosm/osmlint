@@ -1,6 +1,6 @@
 #### Description
 
-This validator detects all the buildings that have more than 90% of their area in overlap to another building.
+This validator detects all the buildings that have more than 90% of their area in overlap to another building. The callback returns the total number of duplicate buildings.
 
 #### Usage
 

@@ -8,6 +8,7 @@ module.exports = function(tileLayers, tile, writeData, done) {
   var buildings = {};
   var bboxes = [];
   var output = {};
+  var duplicateCount = 0;
   var osmlint = 'duplicatebuildings';
   for (var i = 0; i < layer.features.length; i++) {
     var val = layer.features[i];
@@ -34,17 +35,10 @@ module.exports = function(tileLayers, tile, writeData, done) {
         );
         //detecting buildings that have > 90% overlap
         if (difference && (areabuildingA - turf.area(difference)) > (areabuildingA * 0.9)) {
-          var points = turf.explode(buildingA);
-          var multiPoint = turf.combine(points).features[0];
-          multiPoint.properties = {
-            _fromWay: buildingA.properties['@id'],
-            _toWay: buildingB.properties['@id'],
-            _osmlint: osmlint
-          };
+          duplicateCount = duplicateCount + 1;
           //save detection
           output[overlap.id] = buildingA;
           output[bbox.id] = buildingB;
-          output[overlap.id + bbox.id + 'M'] = multiPoint;
         }
       }
     }
@@ -55,7 +49,7 @@ module.exports = function(tileLayers, tile, writeData, done) {
     var fc = turf.featureCollection(result);
     writeData(JSON.stringify(fc) + '\n');
   }
-  done(null, null);
+  done(null, duplicateCount / 2);
 };
 
 function objBbox(obj, id) {
