@@ -6,7 +6,7 @@ var processors = require('../index.js');
 var zoom = 12;
 var duplicateBuildingsTiles = path.join(
   __dirname,
-  '/fixtures/duplicateBuilding.mbtiles'
+  '/fixtures/duplicateBuildings.mbtiles'
 );
 var duplicatebuildingsOpts = {
   bbox: [-71.373711, -12.840841, -71.355085, -12.828916],
