@@ -1,6 +1,6 @@
 #### Description
 
-Filter buildings with tag `building=residential`. Returns a line delimeted feature collection to stdout. The linter will return a JSON bin for edit recency statistics with the following format:
+Filter buildings with tag `building=`. Returns a line delimeted feature collection to stdout. The linter will return a JSON bin for edit recency statistics with the following format:
 
 ```
 {
@@ -17,4 +17,4 @@ Filter buildings with tag `building=residential`. Returns a line delimeted featu
 #### Usage
 
 1. Download [OSM QA Tiles](https://osmlab.github.io/osm-qa-tiles/) for the planet or a country that you are interested in. 
-2. For example, to run for peru.mbtiles: `osmlint filterresidentialbuildings peru.mbtiles > peru.json`
+2. For example, to run for peru.mbtiles: `osmlint filterbuildings peru.mbtiles > peru.json`
