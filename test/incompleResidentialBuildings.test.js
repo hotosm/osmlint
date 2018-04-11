@@ -9,6 +9,11 @@ var commonOpts = {
 test('incompleResidentialBuildings', function(t) {
   t.plan(3);
   processors.incompleteResidentialBuildings(commonOpts, mbtiles, function(err, data) {
+    if (err) {
+      t.fail(err);
+      t.end();
+    }
+
     t.equal(
         data.buildingYes,
         1,
