@@ -49,5 +49,6 @@ module.exports = {
   'noName': require('./validators/noName'),
   'duplicateBuildings': require('./validators/duplicateBuildings'),
   'incompleteResidentialBuildings': require('./validators/incompleteResidentialBuildings'),
+  'filterBuildings': require('./validators/filterBuildings'),
   'filterResidentialBuildings': require('./validators/filterResidentialBuildings')
 };
