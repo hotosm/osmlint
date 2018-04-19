@@ -14,12 +14,12 @@ var optsMissingHighwaysUS = {
 };
 
 test('untaggedWays', function(t) {
-  t.plan(2);
+  t.plan(3);
   logInterceptor();
   processors.untaggedWays(
     optsMissingHighwaysUS,
     osmLevyCountyTiles,
-    function() {
+    function(err, data) {
       var logs = logInterceptor.end();
       for (var i = 0; i < logs.length; i++) {
         var geoJSON = JSON.parse(logs[i]);
@@ -35,6 +35,7 @@ test('untaggedWays', function(t) {
             'LineString',
             'Should be  LineString'
           );
+          t.equal(data, 27, 'Should be 27');
           break;
         }
       }
