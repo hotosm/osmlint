@@ -49,7 +49,7 @@ module.exports = function(tileLayers, tile, writeData, done) {
     var fc = turf.featureCollection(result);
     writeData(JSON.stringify(fc) + '\n');
   }
-  done(null, duplicateCount / 2);
+  done(null, duplicateCount);
 };
 
 function objBbox(obj, id) {
