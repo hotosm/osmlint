@@ -6,6 +6,8 @@ var turf = require('@turf/turf');
 // Find untagged ways.
 module.exports = function(tileLayers, tile, writeData, done) {
   var layer = tileLayers.osm.osm;
+  var wayIds = [];
+
   var result = layer.features.filter(function(val) {
     var hasKeys =
       _.allKeys(val.properties).filter(function(k) {
@@ -19,12 +21,12 @@ module.exports = function(tileLayers, tile, writeData, done) {
 
   result = result.filter(function(value) {
     var firstCoord = value.geometry.coordinates[0];
-    var endCoord =
-      value.geometry.coordinates[value.geometry.coordinates.length - 1];
+    var endCoord = value.geometry.coordinates[value.geometry.coordinates.length - 1];
     if (firstCoord[0] === endCoord[0] && firstCoord[1] === endCoord[1]) {
-      return false;
+      wayIds.push(value.properties['@id']);
+      return true;
     }
-    return true;
+    return false;
   });
 
   if (result.length > 0) {
@@ -32,5 +34,5 @@ module.exports = function(tileLayers, tile, writeData, done) {
     writeData(JSON.stringify(fc) + '\n');
   }
 
-  done(null, null);
+  done(null, wayIds);
 };

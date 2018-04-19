@@ -2,6 +2,9 @@
 
 var tileReduce = require('@mapbox/tile-reduce');
 var path = require('path');
+var _ = require('lodash');
+
+var wayIds = [];
 
 module.exports = function(opts, mbtilesPath, callback) {
   tileReduce({
@@ -16,8 +19,12 @@ module.exports = function(opts, mbtilesPath, callback) {
       }
     ]
   })
-    .on('reduce', function() {})
+    .on('reduce', function(ids) {
+      if (ids.length) {
+        Array.prototype.push.apply(wayIds, ids);
+      }
+    })
     .on('end', function() {
-      callback && callback();
+      callback && callback(null, _.uniq(wayIds).length);
     });
 };
