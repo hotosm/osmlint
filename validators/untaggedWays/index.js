@@ -4,9 +4,10 @@ var tileReduce = require('@mapbox/tile-reduce');
 var path = require('path');
 var _ = require('lodash');
 
-var wayIds = [];
 
 module.exports = function(opts, mbtilesPath, callback) {
+  var wayIds = [];
+
   tileReduce({
     bbox: opts.bbox,
     zoom: opts.zoom,

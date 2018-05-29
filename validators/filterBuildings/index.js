@@ -3,9 +3,10 @@ var tileReduce = require('@mapbox/tile-reduce');
 var path = require('path');
 var _ = require('lodash');
 
-var timeBins = {};
 
 module.exports = function(opts, mbtilesPath, callback) {
+  var timeBins = {};
+
   tileReduce({
     bbox: opts.bbox,
     zoom: opts.zoom,
